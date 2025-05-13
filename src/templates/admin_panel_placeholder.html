@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Administração</title>
+    <link rel="stylesheet" href="{{ url_for(\'static\', filename=\'style.css\') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Painel de Administração</h2>
+        <p>Bem-vindo, {{ current_user.username }}!</p>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <ul class=flashes>
+            {% for category, message in messages %}
+              <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+        <p>Aqui você pode gerenciar as configurações do site.</p>
+        
+        <!-- Conteúdo específico do painel de administração virá aqui -->
+        <p><em>(Funcionalidades de gestão de configurações a serem implementadas)</em></p>
+        
+        <p><a href="{{ url_for(\'dashboard\') }}">Voltar para o Dashboard</a></p>
+        <p><a href="{{ url_for(\'auth_bp.logout\') }}">Sair</a></p>
+    </div>
+</body>
+</html>

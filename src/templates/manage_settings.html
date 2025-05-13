@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciar Configurações</title>
+    <link rel="stylesheet" href="{{ url_for(\'static\', filename=\'style.css\') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Gerenciar Configurações do Site</h2>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <ul class=flashes>
+            {% for category, message in messages %}
+              <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+        <form method="POST" action="{{ url_for(\'admin_bp.manage_settings\') }}">
+            <div>
+                <label for="site_title">Título do Site:</label>
+                <input type="text" id="site_title" name="site_title" value="{{ current_site_title }}" required>
+            </div>
+            <div>
+                <button type="submit">Salvar Configurações</button>
+            </div>
+        </form>
+        <p><a href="{{ url_for(\'admin_bp.admin_panel\') }}">Voltar para o Painel de Administração</a></p>
+        <p><a href="{{ url_for(\'auth_bp.logout\') }}">Sair</a></p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciar Usuários</title>
+    <link rel="stylesheet" href="{{ url_for(\'static\', filename=\'style.css\') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Gerenciar Usuários</h2>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <ul class=flashes>
+            {% for category, message in messages %}
+              <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome de Usuário</th>
+                    <th>É Administrador?</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ 'Sim' if user.is_admin else 'Não' }}</td>
+                    <td>
+                        {% if user.id != current_user.id %}
+                        <form method="POST" action="{{ url_for(\'admin_bp.toggle_admin_status\', user_id=user.id) }}" style="display:inline;">
+                            <button type="submit">{{ 'Rebaixar de Admin' if user.is_admin else 'Promover a Admin' }}</button>
+                        </form>
+                        {% else %}
+                            (Você)
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <p><a href="{{ url_for(\'admin_bp.admin_panel\') }}">Voltar para o Painel de Administração</a></p>
+        <p><a href="{{ url_for(\'auth_bp.logout\') }}">Sair</a></p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,24 @@
+# Lista de Tarefas: Site com Backend e Painel de Gestão
+
+- [X] 001: Criar template Flask para a aplicação web (`meu_site_gerenciador`)
+- [X] 002: Implementar funcionalidade de login e logout
+  - [X] Habilitar e configurar o banco de dados em `src/main.py`
+  - [X] Criar modelo de dados para Usuário (ex: `User` em `src/models/user.py`)
+  - [X] Implementar rotas de autenticação (login, logout, registro) em `src/routes/auth.py`
+  - [X] Criar formulários e templates HTML para login e registro
+  - [X] Integrar `Flask-Login` para gerenciamento de sessão
+  - [X] Implementar hashing de senhas
+- [X] 003: Criar painel de gestão para configurações
+  - [X] Definir quais configurações serão gerenciáveis (Título do Site, Gestão de Usuários)
+  - [X] Criar rotas e templates para o painel de gestão (acessível apenas por gestores)
+  - [X] Implementar lógica para salvar e carregar configurações (utilizando `SiteConfiguration` no banco de dados)
+  - [X] Implementar gestão de usuários (promover/rebaixar admin)
+- [X] 004: Testar aplicação e validar funcionalidades
+  - [X] Testar fluxo de registro de usuário
+  - [X] Testar login e logout com usuários normais e gestor
+  - [X] Testar funcionalidades do painel de gestão (alterar título, gerenciar usuários)
+  - [X] Garantir que páginas protegidas só sejam acessíveis após login e com permissão correta
+- [ ] 005: Reportar e enviar link para acesso ao site
+  - [X] Empacotar dependências em `requirements.txt`
+  - [X] Realizar deploy da aplicação (Falha técnica impede deploy automático, instruções para deploy manual fornecidas)
+  - [X] Enviar URL pública para o usuário (Não aplicável devido à falha no deploy automático, código fonte e instruções de deploy manual fornecidos)
